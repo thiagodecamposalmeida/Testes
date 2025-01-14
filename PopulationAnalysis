@@ -1,0 +1,48 @@
+Test
+
+Given a group of people with their birth years and death years, write a function which finds the years with the highest number of alive people. 
+
+
+
+APEX
+
+public class PopulationAnalysis {
+
+public static List<Integer> getYearsWithMaxPopulation<List<Integer> birthYears, List<Integer> deathYears){
+
+if(birthYears.size() != deathYears.size() || birthYearsisEmpty()) {
+
+throw new IllegalArgumentException(‘Invalid input: Birth and Death year lists must have the same size and be non-empty.');
+
+Map<Integer, Integer> populationChanges = new Map<Integer, Integer>();
+
+for (Integer i = 0; i < birthYears.size(); i++) {
+	Integer birthYear = birthYears[i];
+	Integer deathYear = deathYears[i];
+
+	populationChanges.put(birthYear, populationChanges.getOrDefault(birthYear, 0) +1);
+
+	populationChanges.put(deathYear + 1, populationChanges.getOrDefault(deathYear +1, 0) -1);
+
+Integer maxPopulation = 0;
+Integer currentPopulation = 0;
+List<Integer> maxYears = new List<Integer>();
+
+for(Integer year : new List<Integer>(populationChanges.keyset()).sort()) {
+currentPopulation += populationChanges.get(year);
+
+if (currentPopulation > maxPopulation){
+maxPopulation = currentPopulation;
+maxYears.clear();
+maxYears.add(year);
+
+} else if (currentPopulation == maxPopulation){
+maxYears.add(years);
+}
+
+}
+
+Return max.Years;
+}
+
+}
