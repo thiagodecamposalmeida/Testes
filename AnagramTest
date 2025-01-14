@@ -1,0 +1,42 @@
+Write a function that takes two words as an argument and returns true if they are anagrams (contain the exact same letters) and false otherwise. 
+Example anagrams are silent = listen.
+
+PYTHON
+def are_anagrams(word1, word2):
+
+word1 = word1.replace(“ ”, “”).lower()
+word2 = word2.replace(“ ”, “”).lower()
+
+return sorted(word1) == sorted(word2)
+
+print(are_anagrams(“silent”, “listen”)) #True
+
+print(are_anagrams(“hello”, “word”)) #False
+
+print(are_anagrams(“silents”, “listens”))
+
+APEX
+public class AnagramChecker {
+
+public static Boolean areAnagrams(String word1, String word2){
+
+word1 = word1.replaceAll('\\s+', ‘').toLowerCase();
+word2 = word2.replaceAll('\\s+', ‘').toLowerCase();
+
+return sortString(word1).equals(sortString(word2));
+
+}
+
+private static String sortString(String input){
+
+List<String> charList = new.List<string>();
+for (Integer i = 0; i < input.length(); i++){
+
+charList.add(input.substring(i, i + 1));
+}
+
+charList.sort();
+
+return String.join(charList, ‘');
+
+}
